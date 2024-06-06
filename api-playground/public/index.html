@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Playground</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>API Playground</h1>
+        <form id="api-form">
+            <label for="url">API URL:</label>
+            <input type="text" id="url" name="url" required>
+
+            <label for="method">HTTP Method:</label>
+            <select id="method" name="method">
+                <option value="GET">GET</option>
+                <option value="POST">POST</option>
+                
+            </select>
+
+            <label for="api_key">API Key:</label>
+            <input type="text" id="api_key" name="api_key">
+
+            <label for="headers">Headers (JSON):</label>
+            <textarea id="headers" name="headers"></textarea>
+
+            <div id="query-params-container">
+                <label>Query Parameters:</label>
+                
+                <div class="param">
+                    <input type="text" name="query_key" placeholder="Key">
+                    <input type="text" name="query_value" placeholder="Value">
+                    <button type="button" onclick="removeParam(this)">Remove</button>
+                </div>
+                <button type="button" onclick="addQueryParam()">Add Query Parameter</button>
+            </div>
+            <br/>
+            <div id="body-params-container">
+                <label>Body Parameters:</label>
+                
+                <div class="param">
+                    <input type="text" name="body_key" placeholder="Key">
+                    <input type="text" name="body_value" placeholder="Value">
+                    <button type="button" onclick="removeParam(this)">Remove</button>
+                </div>
+                <button type="button" onclick="addBodyParam()">Add Body Parameter</button>
+            </div>
+            <br/>
+            <button type="submit">Send Request</button>
+        </form>
+        <div id="response">
+            <h2>Response</h2>
+            <pre id="response-output"></pre>
+        </div>
+    </div>
+    <script src="/js/scripts.js"></script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+[
+    {
+      "name": "Wireless Headphones",
+      "price": 79.99,
+      "featured": true,
+      "rating": 4.2,
+      "company": "dell"
+    
+    },
+    {
+      "name": "iphone",
+      "price": 249.00,
+      "featured": false,
+      "rating": 4.6,
+      "company": "apple"
+    
+    },
+    {
+      "name": "Gaming Laptop",
+      "price": 1499.00,
+      "featured": true,
+      "rating": 4.8,
+      "company": "dell"
+      
+    },
+    {
+      "name": "Mechanical Keyboard",
+      "price": 129.99,
+      "featured": false,
+      "rating": 4.3,
+      "company": "dell"
+    },
+    {
+      "name": "Instant Camera",
+      "price": 99.00,
+      "featured": true,
+      "rating": 4.1,
+      "company": "samsung"
+    },
+    {
+      "name": "Wireless Speaker",
+      "price": 199.99,
+      "featured": false,
+      "rating": 4.4,
+      "company": "samsung"
+    },
+    {
+      "name":"VR Headset",
+      "price": 399.00,
+      "featured": true,
+      "rating": 4.7,
+      "company": "apple"
+       
+    },
+    {
+      "name": "Tablet",
+      "price": 499.00,
+      "featured": false,
+      "rating": 4.5,
+      "company": "samsung"
+    },
+    {
+      "name": "Smart Home Hub",
+      "price": 99.99,
+      "featured": true,
+      "rating": 4.0,
+      "company": "samsung"
+    },
+    {
+      "name": "Electric Scooter",
+      "price": 499.00,
+      "featured": false,
+      "rating": 4.2,
+      "company": "apple"
+    }
+  ]
+  

@@ -1,0 +1,57 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+form {
+    background: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    box-shadow: 0 0 10px #ccc;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input, select, textarea, .param {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+button {
+    display: inline-block;
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+}
+button:hover {
+    background: #555;
+}
+#response {
+    background: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px #ccc;
+}
+pre {
+    background: #f4f4f4;
+    padding: 10px;
+    overflow: auto;
+}
+.param {
+    display: flex;
+    gap: 10px;
+}
+.param input {
+    flex: 1;
+}
+.param button {
+    flex-shrink: 0;
+}

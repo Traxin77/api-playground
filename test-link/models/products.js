@@ -1,3 +1,5 @@
+<div id="particles-js"></div>
+const mongoose = require("mongoose");
 const mongoose = require("mongoose");
 const productSchema = new mongoose.Schema({
     name:{

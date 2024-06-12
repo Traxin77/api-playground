@@ -68,9 +68,9 @@ db.serialize(() => {
     db.run("INSERT OR IGNORE INTO users (username, password) VALUES (?, ?)", ["kunal", "kunal"]);
 });
 
-// Serve login.html by default
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'login.html'));
+// Serve login.html for root and /login
+app.get( '/login', (req, res) => {
+    res.sendFile('login.html', { root: path.join(__dirname, 'public') });
 });
 
 // Login endpoint
@@ -81,7 +81,7 @@ app.post('/login', (req, res) => {
             return res.status(500).json({ error: err.message });
         }
         if (row) {
-            req.session.user = row;
+            // req.session.user = row;
             res.status(200).json({ message: "Login successful" });
         } else {
             res.status(401).json({ message: "Invalid credentials" });
@@ -100,17 +100,8 @@ app.post('/register', (req, res) => {
     });
 });
 
-// Middleware to check if user is authenticated
-function isAuthenticated(req, res, next) {
-    if (req.session.user) {
-        next();
-    } else {
-        res.status(401).json({ message: "Unauthorized" });
-    }
-}
-
 // API request endpoint
-app.post('/api_request', isAuthenticated, async (req, res) => {
+app.post('/api_request', async (req, res) => {
     const { url, method, headers, params, api_key } = req.body;
 
     const config = {
@@ -142,7 +133,5 @@ app.post('/api_request', isAuthenticated, async (req, res) => {
 });
 
 app.listen(3000, () => {
-    console.log('Server running on http://localhost:3000');
+    console.log('Server running on http://localhost:3000/login');
 });
-
-

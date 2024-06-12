@@ -1,6 +1,7 @@
 document.getElementById('api-form').addEventListener('submit', function(e) {
     e.preventDefault();
 
+    const startTime = new Date().getTime();
     const url = document.getElementById('url').value;
     const method = document.getElementById('method').value;
     const api_key = document.getElementById('api_key').value;
@@ -42,9 +43,21 @@ document.getElementById('api-form').addEventListener('submit', function(e) {
         },
         body: JSON.stringify(data)
     })
-    .then(response => response.json())
+    .then(response => {
+        // Check if the response is okay
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        document.getElementById('status-code').textContent = `Status Code: ${response.status}`; 
+        return response.json();
+    })
     .then(data => {
+        const endTime = new Date().getTime();
+        const responseTime = endTime - startTime;
+        const size = new Blob([JSON.stringify(data)]).size;
         document.getElementById('response-output').textContent = JSON.stringify(data, null, 2);
+        document.getElementById('response-time').innerText = `Response time: ${responseTime}ms`; 
+        document.getElementById('response-size').textContent = `Response Size: ${size} bytes`; 
     })
     .catch(error => {
         document.getElementById('response-output').textContent = error;
@@ -77,4 +90,20 @@ function addBodyParam() {
 
 function removeParam(button) {
     button.parentElement.remove();
+}
+
+document.getElementById('copy-button').addEventListener('click', function() {
+    const responseText = document.getElementById('response-output').innerText;
+    copyToClipboard(responseText);
+    alert('Response copied to clipboard!');
+});
+
+
+function copyToClipboard(text) {
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand('copy');
+    document.body.removeChild(textarea);
 }

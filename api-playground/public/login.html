@@ -79,7 +79,7 @@
       const result = await response.json();
       if (response.ok) {
         localStorage.setItem('isLoggedIn', 'true'); // Save login status to local storage
-        alert('Login successful');
+
         window.location.href = '/index.html'; // Redirect to index.html
       } else {
         alert(result.message);

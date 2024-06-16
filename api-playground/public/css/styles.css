@@ -1,229 +1,304 @@
-/*body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+* {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
-.container {
-    width: 80%;
-    margin: auto;
-    overflow: hidden;
+
+html {
+    font-size: 16px;
+    font-family: "Raleway", sans-serif;
+    color: #555;
 }
-form {
-    background: #fff;
-    padding: 20px;
-    margin: 20px 0;
-    box-shadow: 0 0 10px #ccc;
+
+ul,
+nav {
+    list-style: none;
 }
-label {
-    display: block;
-    margin-bottom: 5px;
-}
-input, select, textarea, .param {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-}
-button {
-    display: inline-block;
-    background: #333;
+
+a {
+    text-decoration: none;
+    opacity: 0.75;
     color: #fff;
-    padding: 10px 20px;
-    border: none;
-    cursor: pointer;
-}
-button:hover {
-    background: #555;
-}
-#response {
-    background: #fff;
-    padding: 20px;
-    box-shadow: 0 0 10px #ccc;
-}
-pre {
-    background: #f4f4f4;
-    padding: 10px;
-    overflow: auto;
-}
-.param {
-    display: flex;
-    gap: 10px;
-}
-.param input {
-    flex: 1;
-}
-.param button {
-    flex-shrink: 0;
-}
-*/
-body {
-    font-family: 'Arial', sans-serif;
-    /* background-color: #f4f4f9; */
-    color: #333;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
 }
 
-.navbar {
-    background-color: #007BFF;
-    padding: 10px 20px;
-    color: white;
+a:hover {
+    opacity: 1;
 }
 
-.navbar .container {
+.btn {
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    background-color: #e07e7b;
+    opacity: 1;
+    transition: all 200ms;
+}
+
+.btn:hover {
+    background-color: transparent;
+    border: 2px solid #fff;
+}
+
+/* Header Styles */
+header img {
+    height: 80px; /* Adjust the height as per your preference */
+    width: auto; /* Allows the width to adjust proportionally */
+    vertical-align: middle; /* Aligns the image vertically in the line */
+    margin-right: 10px; /* Optional: Adds some space between logo and text */
+}
+
+
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 1em 5%;
+    background-color: rgba(36, 41, 95, 0.5);
 }
 
-.navbar .brand {
-    font-size: 1.5em;
-    color: white;
-    text-decoration: none;
+header .logo {
+    height: 40px;
+    vertical-align: middle;
+    margin-right: 0.5em;
 }
 
-.navbar .nav {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-}
-
-.navbar .nav li {
-    margin-left: 20px;
-}
-
-.navbar .nav li a {
-    color: white;
-    text-decoration: none;
-    font-size: 1em;
-}
-
-.container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
-
-.main-content {
-    flex: 1;
-    
-    padding: 20px 40px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-top: 20px;
-}
-
-h1 {
-    color: #007BFF;
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-.form-group {
-    margin-bottom: 15px;
-    color: white3;
-    background-color: black;
-}
-
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
-input[type="text"],
-textarea,
-select {
-    width: calc(100% - 20px);
-    padding: 8px 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-textarea {
-    resize: vertical;
-    height: 80px;
-}
-
-button {
-    background-color: #007BFF;
+header h2 a {
     color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
+    text-transform: uppercase;
+    font-size: 1.5em;
+    transition: all 200ms;
 }
 
-button:hover {
-    background-color: #0056b3;
+header h2 a:hover {
+    color: #e07e7b;
 }
 
-.param {
+header nav {
     display: flex;
     align-items: center;
 }
 
-.param input[type="text"] {
-    flex: 1;
-    margin-right: 10px;
+header nav li {
+    margin-left: 2em;
 }
 
-.param button {
-    background-color: #dc3545;
+header nav a {
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 1px;
+    transition: all 200ms;
 }
 
-.param button:hover {
-    background-color: #c82333;
+header nav a:hover {
+    color: #e07e7b;
 }
 
-#response {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: #f8f9fa;
-    border: 1px solid #ddd;
+/* Hero Section Styles */
+
+.hero {
+    height: 100vh;
+    background: url("https://images.unsplash.com/photo-1475483768296-6163e08872a1?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1600&h=900&fit=crop&s=20b3b1c3caef8c619ac3c75c07a7eafb") no-repeat center center/cover;
+    position: relative;
+    color: #fff;
+}
+
+.hero-content-area {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+.hero h1 {
+    font-size: 4em;
+    font-family: 'Amatic SC', cursive;
+    letter-spacing: 2px;
+}
+
+.hero h3 {
+    font-size: 1.5em;
+    margin: 0.5em 0;
+}
+
+.hero .btn {
+    margin-top: 1em;
+    padding: 0.5em 2em;
+    background-color: #e07e7b;
+    color: #fff;
+    border: 2px solid #e07e7b;
+}
+
+.hero .btn:hover {
+    background-color: transparent;
+}
+
+/* Form Section Styles */
+
+.api-form {
+    padding: 2em 0;
+}
+
+.api-form .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+.api-form .title {
+    text-align: center;
+    margin-bottom: 1em;
+    font-size: 2em;
+}
+
+.api-form .form-group {
+    margin-bottom: 1em;
+}
+
+.api-form label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+.api-form input,
+.api-form select,
+.api-form textarea {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-#response h2 {
-    margin-top: 0;
+.api-form button[type="button"] {
+    margin-top: 0.5em;
+    padding: 0.5em 1em;
+    background-color: #e07e7b;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }
 
-pre {
-    white-space: pre-wrap;
-    word-wrap: break-word;
+.api-form button[type="button"]:hover {
+    background-color: #9b4d4b;
 }
 
-.footer {
-    background-color: #007BFF;
-    color: white;
+.api-form button[type="submit"] {
+    width: 100%;
+    padding: 1em;
+    background-color: #e07e7b;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.25em;
+    cursor: pointer;
+}
+
+.api-form button[type="submit"]:hover {
+    background-color: #9b4d4b;
+}
+
+/* Response Section Styles */
+
+.response {
+    padding: 2em 0;
+}
+
+.response .container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+.response .title {
     text-align: center;
-    padding: 10px 20px;
-    margin-top: 20px;
+    margin-bottom: 1em;
+    font-size: 2em;
 }
 
-.spinner {
+.response #stats {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1em;
+}
+
+.response #stats p {
+    margin: 0;
+    font-size: 1em;
+    color: #333;
+}
+
+.response .spinner {
+    text-align: center;
+}
+
+.response .spinner::after {
+    content: '';
+    width: 40px;
+    height: 40px;
     border: 4px solid rgba(0, 0, 0, 0.1);
-    border-left: 4px solid #007BFF;
+    border-top-color: #333;
     border-radius: 50%;
-    width: 36px;
-    height: 36px;
-    animation: spin 1s linear infinite;
-    margin: 20px auto;
+    display: inline-block;
+    animation: spin 1s infinite linear;
 }
 
 @keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
+    to {
         transform: rotate(360deg);
     }
+}
+
+.response #response-content {
+    margin-top: 1em;
+}
+
+.response textarea {
+    width: 100%;
+    height: 200px;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.response #copy-button {
+    margin-top: 1em;
+    padding: 0.5em 1em;
+    background-color: #e07e7b;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.response #copy-button:hover {
+    background-color: #9b4d4b;
+}
+
+/* Footer Styles */
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1em 0;
+}
+
+footer p {
+    margin-bottom: 0.5em;
+}
+
+footer ul {
+    display: flex;
+    justify-content: center;
+    margin-top: 0.5em;
+}
+
+footer ul li {
+    margin: 0 0.5em;
+}
+
+footer ul a {
+    color: #fff;
 }

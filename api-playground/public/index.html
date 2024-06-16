@@ -5,47 +5,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>API Playground</title>
+    <link href="https://fonts.googleapis.com/css?family=Amatic+SC|Raleway" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/particle.css">
-
-    <script>
-        window.onload = function () {
-            const isLoggedIn = localStorage.getItem('isLoggedIn');
-            if (!isLoggedIn) {
-                window.location.href = 'login.html';
-            }
-        }
-    </script>
     <style>
-        #stats{
-            color:antiquewhite;
-            display:flex;
+        body {
+            scroll-behavior: smooth;
         }
     </style>
 </head>
 
 <body>
-    <div id="particles-js"></div>
-    <div id="foregrd">
-        <nav class="navbar">
-            <div class="container">
-                <a href="#" class="brand">API Playground</a>
-                <ul class="nav">
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Docs</a></li>
-                    <li><a href="#">Contact</a></li>
-                </ul>
-            </div>
+    <header>
+        <h2><a href="#"><img src="https://img.freepik.com/premium-vector/api-technology-icon-apps-web_116137-6829.jpg?size=626&ext=jpg&ga=GA1.1.265473919.1718525797&semt=ais_user" alt="API Playground Logo" class="logo">API Playground</a></h2>
+        <nav>
+                <li><a href="#">Home</a></li>
+                <li><a href="#api-form">Docs</a></li>
+                <li><a href="#api-form">Contact</a></li>
+            
         </nav>
+    </header>
+    
 
-        <div class="container main-content">
+    <section class="hero">
+        <div id="particles-js"></div>
+        <div class="hero-content-area">
             <h1>API Playground</h1>
-            <form id="api-form">
+            <h3>Experiment with APIs easily</h3>
+            <!-- Updated API Playground button -->
+            <a href="#api-form" class="btn" onclick="smoothScroll(event)">API Playground</a>
+        </div>
+    </section>
+
+    <section id="api-form" class="api-form">
+        <div class="container">
+            <h3 class="title">Send an API Request</h3>
+            <form id="api-request-form" onsubmit="sendRequest(event)">
                 <div class="form-group">
                     <label for="url">API URL:</label>
                     <input type="text" id="url" name="url" required>
                 </div>
-
                 <div class="form-group">
                     <label for="method">HTTP Method:</label>
                     <select id="method" name="method">
@@ -53,17 +53,14 @@
                         <option value="POST">POST</option>
                     </select>
                 </div>
-
                 <div class="form-group">
                     <label for="api_key">API Key:</label>
                     <input type="text" id="api_key" name="api_key">
                 </div>
-
                 <div class="form-group">
                     <label for="headers">Headers (JSON):</label>
                     <textarea id="headers" name="headers"></textarea>
                 </div>
-
                 <div id="query-params-container" class="form-group">
                     <label>Query Parameters:</label>
                     <div class="param">
@@ -73,7 +70,6 @@
                     </div>
                     <button type="button" onclick="addQueryParam()">Add Query Parameter</button>
                 </div>
-
                 <div id="body-params-container" class="form-group">
                     <label>Body Parameters:</label>
                     <div class="param">
@@ -83,32 +79,125 @@
                     </div>
                     <button type="button" onclick="addBodyParam()">Add Body Parameter</button>
                 </div>
-
-                <button type="submit" onclick="sendRequest()">Send Request</button>
+                <button type="submit">Send Request</button>
             </form>
+        </div>
+    </section>
+
+    <section id="response" class="response">
+        <div class="container">
+            <h3 class="title">Response</h3>
             <div id="stats">
                 <p id="status-code"></p>
-                <p style="margin-left: 20px;"id="response-size"></p>
-                <p style="margin-left: 20px;"id="response-time"></p>
+                <p id="response-size"></p>
+                <p id="response-time"></p>
             </div>
-            <br>
             <div id="loading-spinner" class="spinner" style="display: none;"></div>
-            <div id="response">
-                <h2>Response</h2>
-                <div> <button id="copy-button">Copy to Clipboard</button> </div>
-                <pre id="response-output"></pre>
+            <div id="response-content">
+                <textarea id="response-output" readonly></textarea>
+                <button id="copy-button" onclick="copyToClipboard()">Copy to Clipboard</button>
             </div>
         </div>
+    </section>
 
-        <footer class="footer">
-            <div class="container">
-                <p>&copy; 2024 API Playground. All rights reserved.</p>
-            </div>
-        </footer>
+    <footer>
+        <p>&copy; 2024 API Playground. All rights reserved.</p>
+        <ul>
+            <li><a href="#"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+            <li><a href="#"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+            <li><a href="#"><i class="fa fa-snapchat-square fa-2x"></i></a></li>
+        </ul>
+    </footer>
 
-        <script src="/js/scripts.js"></script>
-        <script src="particles.js-master/particles.js"></script>
-        <script src="/particles.js-master/demo/js/app.js"></script>
-    </body>
+    <script src="/js/scripts.js"></script>
+    <script src="particles.js-master/particles.js"></script>
+    <script src="/particles.js-master/demo/js/app.js"></script>
+    <script>
+        function smoothScroll(event) {
+            event.preventDefault();
+            const targetId = event.target.getAttribute('href').substring(1);
+            document.getElementById(targetId).scrollIntoView({ behavior: 'smooth' });
+        }
+
+        async function sendRequest(event) {
+            event.preventDefault();
+
+            const url = document.getElementById('url').value;
+            const method = document.getElementById('method').value;
+            const apiKey = document.getElementById('api_key').value;
+            const headers = JSON.parse(document.getElementById('headers').value || '{}');
+            const queryParams = {};
+            document.querySelectorAll('#query-params-container .param').forEach(param => {
+                const key = param.querySelector('input[name="query_key"]').value;
+                const value = param.querySelector('input[name="query_value"]').value;
+                queryParams[key] = value;
+            });
+            const bodyParams = {};
+            document.querySelectorAll('#body-params-container .param').forEach(param => {
+                const key = param.querySelector('input[name="body_key"]').value;
+                const value = param.querySelector('input[name="body_value"]').value;
+                bodyParams[key] = value;
+            });
+
+            const response = await fetch(url, {
+                method: method,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${apiKey}`,
+                    ...headers
+                },
+                body: method === 'POST' ? JSON.stringify(bodyParams) : null
+            });
+            const responseData = await response.json();
+
+            document.getElementById('response-output').textContent = JSON.stringify(responseData, null, 2);
+            document.getElementById('status-code').textContent = `Status Code: ${response.status}`;
+            document.getElementById('response-size').textContent = `Response Size: ${response.headers.get('Content-Length')}`;
+            document.getElementById('response-time').textContent = `Response Time: ${response.headers.get('Date')}`;
+
+            // Smooth scroll to the response section
+            document.getElementById('response').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function addQueryParam() {
+            const container = document.getElementById('query-params-container');
+            const param = document.createElement('div');
+            param.className = 'param';
+            param.innerHTML = `
+                <input type="text" name="query_key" placeholder="Key">
+                <input type="text" name="query_value" placeholder="Value">
+                <button type="button" onclick="removeParam(this)">Remove</button>
+            `;
+            container.appendChild(param);
+        }
+
+        function addBodyParam() {
+            const container = document.getElementById('body-params-container');
+            const param = document.createElement('div');
+            param.className = 'param';
+            param.innerHTML = `
+                <input type="text" name="body_key" placeholder="Key">
+                <input type="text" name="body_value" placeholder="Value">
+                <button type="button" onclick="removeParam(this)">Remove</button>
+            `;
+            container.appendChild(param);
+        }
+
+        function removeParam(button) {
+            button.parentElement.remove();
+        }
+
+        function copyToClipboard() {
+            const responseOutput = document.getElementById('response-output');
+            const range = document.createRange();
+            range.selectNode(responseOutput);
+            window.getSelection().removeAllRanges();
+            window.getSelection().addRange(range);
+            document.execCommand('copy');
+            window.getSelection().removeAllRanges();
+            alert('Response copied to clipboard!');
+        }
+    </script>
+</body>
 
 </html>
